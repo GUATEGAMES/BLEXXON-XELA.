@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ</title>
+<style>
+:root{
+  --bg:#030914;--bg2:#061522;--card:#071725;--card2:#082033;--line:rgba(255,255,255,.09);
+  --cyan:#63dfff;--green:#8ff2bc;--amber:#ffd27a;--red:#ff8589;--text:#f4f8ff;--muted:#8ea8bb;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:linear-gradient(145deg,#020711,#071527 55%,#03101c);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+body{min-height:100vh}
+button,input{font:inherit}
+[hidden],.view-hidden{display:none!important}
+
+/* Login is static HTML: it appears immediately, before any script runs. */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 22% 14%,rgba(48,137,215,.20),transparent 37%),linear-gradient(145deg,#020711,#071527 55%,#03101c)}
+.login-card{width:min(440px,100%);padding:30px;border-radius:26px;background:#071221;border:1px solid rgba(255,255,255,.13);box-shadow:0 30px 75px rgba(0,0,0,.5)}
+.brand{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.logo{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#d71920,#ff5960);font-weight:950;font-size:20px}
+.brand small{display:block;color:#8da8bd;font-size:11px;letter-spacing:.11em;text-transform:uppercase;margin-bottom:3px}.brand strong{font-size:19px}
+.login h1{margin:0 0 8px;font-size:27px;line-height:1.15}.login p{margin:0 0 20px;color:#a8bccb;font-size:14px;line-height:1.5}
+.form{display:grid;gap:13px}.label{display:grid;gap:7px;color:#dce8f5;font-size:12px;font-weight:850}
+.input{width:100%;height:50px;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:#091a2d;color:white;padding:0 15px;font-size:16px;outline:none}.input:focus{border-color:#52b7ff;box-shadow:0 0 0 3px rgba(82,183,255,.12)}
+.login-btn{height:50px;border:0;border-radius:14px;background:linear-gradient(135deg,#d71920,#ff4a53);color:white;font-weight:950;cursor:pointer}
+.error{min-height:20px;margin-top:11px;color:#ff8d92;font-size:12px;font-weight:850;text-align:center}.login-foot{margin:12px 0 0!important;text-align:center;font-size:10px!important;color:#68829a!important}
+
+.app{min-height:100vh;background:linear-gradient(145deg,#020711,#071527 58%,#03101c)}
+.header{border-bottom:1px solid rgba(99,223,255,.17);background:#04101d;padding:19px 24px}
+.header-inner{max-width:1500px;margin:auto;display:flex;justify-content:space-between;gap:18px;align-items:center}
+.header h1{margin:0;font-size:27px;letter-spacing:-.03em}.header .sub{margin-top:6px;color:#8fa9ba;font-size:12px;line-height:1.45}.header .sub b{color:#9ee9ff}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.pill{min-height:34px;padding:0 11px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:#071725;display:flex;align-items:center;color:#c7d8e5;font-size:11px;font-weight:900;white-space:nowrap}.pill.ok{color:var(--green);border-color:rgba(143,242,188,.22)}
+.logout{min-height:34px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:#0a1c2b;color:#dbe9f3;font-weight:900;cursor:pointer}
+
+main{max-width:1500px;margin:auto;padding:20px 24px 32px}
+.hero{padding:20px;border:1px solid rgba(99,223,255,.2);border-radius:24px;background:radial-gradient(circle at 12% 0%,rgba(99,223,255,.08),transparent 33%),#061522}
+.hero-top{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap}.kicker{font-size:10px;font-weight:950;letter-spacing:.13em;color:#86e7ff}.hero h2{margin:5px 0 7px;font-size:27px;letter-spacing:-.03em}.hero p{margin:0;color:var(--muted);font-size:13px;line-height:1.55;max-width:950px}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{padding:8px 10px;border-radius:999px;border:1px solid rgba(99,223,255,.22);background:rgba(99,223,255,.06);color:#bfefff;font-size:10px;font-weight:950}.chip.owner{color:var(--green);border-color:rgba(143,242,188,.24);background:rgba(143,242,188,.05)}
+
+.kpis{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-top:17px}.kpi{min-height:88px;padding:13px;border-radius:16px;background:#071725;border:1px solid var(--line);overflow:hidden}.kpi span{display:block;color:var(--muted);font-size:10px;line-height:1.3}.kpi strong{display:block;margin-top:7px;font-size:19px;white-space:nowrap}.green{color:var(--green)!important}.cyan{color:#91eaff!important}.amber{color:var(--amber)!important}
+
+.cycle{margin-top:14px;padding:15px;border-radius:18px;background:#071725;border:1px solid var(--line)}.cycle-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.cycle-title{font-weight:950;font-size:13px}.cycle-state{padding:8px 11px;border-radius:999px;border:1px solid rgba(143,242,188,.25);background:rgba(143,242,188,.06);color:var(--green);font-size:11px;font-weight:950;white-space:nowrap}.cycle-state.discharge{color:var(--amber);border-color:rgba(255,210,122,.26);background:rgba(255,210,122,.06)}.cycle-state.closed{color:#aab9c4;border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+.track{height:9px;margin:12px 0 9px;border-radius:999px;background:#10293b;overflow:hidden}.track i{display:block;height:100%;width:0;background:linear-gradient(90deg,#19d37d,#63dfff);border-radius:inherit;transition:width .85s linear}.track i.discharge{background:linear-gradient(90deg,#ffb020,#ff8589)}
+.cycle-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.mini{padding:10px;border-radius:13px;background:#061522;border:1px solid rgba(255,255,255,.07);overflow:hidden}.mini span{display:block;color:var(--muted);font-size:9px}.mini b{display:block;margin-top:4px;font-size:13px;white-space:nowrap}
+
+.machines{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:15px}.machine{padding:16px;border-radius:19px;border:1px solid rgba(99,223,255,.18);background:linear-gradient(150deg,#082033,#061522)}.machine-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.machine h3{margin:0 0 3px;font-size:19px}.serial{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#9db6c8;font-size:10px;letter-spacing:.04em}.status{padding:7px 9px;border-radius:999px;border:1px solid rgba(143,242,188,.22);background:rgba(143,242,188,.05);color:var(--green);font-size:9px;font-weight:950;white-space:nowrap}.status.pause{color:var(--amber);border-color:rgba(255,210,122,.25);background:rgba(255,210,122,.05)}.status.closed{color:#aab9c4;border-color:rgba(255,255,255,.11);background:rgba(255,255,255,.03)}
+.machine-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}.cell{min-height:64px;padding:9px;border-radius:12px;background:#071725;border:1px solid rgba(255,255,255,.07);overflow:hidden}.cell span{display:block;color:var(--muted);font-size:9px;line-height:1.25}.cell b{display:block;margin-top:5px;font-size:13px;white-space:nowrap;min-width:10ch}.cell .wide{min-width:18ch;font-size:12px}
+
+.battery-title{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin:19px 0 10px}.battery-title h3{margin:0;font-size:18px}.battery-title small{color:var(--muted);font-size:10px}.batteries{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}.battery{padding:13px;border-radius:16px;background:#071725;border:1px solid rgba(255,255,255,.09)}.battery.active{border-color:rgba(143,242,188,.25)}.battery.reserve{border-color:rgba(99,223,255,.2)}.battery-head{display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:11px;font-weight:950}.battery-head b{color:var(--green);min-width:6ch;text-align:right}.battery-bar{height:8px;border-radius:999px;background:#10293b;overflow:hidden;margin:9px 0}.battery-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#19d37d,#75f0ac);border-radius:inherit;transition:width .9s linear}.battery small{display:block;color:var(--muted);font-size:9px;line-height:1.4;min-height:25px}.load{margin-top:6px;color:#91eaff;font-size:10px;font-weight:900}.health{margin-top:5px;color:#a0eac1;font-size:9px;font-weight:900}
+
+.report{margin-top:15px;padding:15px;border-radius:18px;background:#071725;border:1px solid rgba(143,242,188,.16)}.report-head{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:wrap}.report h3{margin:3px 0 5px;font-size:18px}.report small{display:block;color:var(--muted);font-size:10px;line-height:1.45}.excel{min-height:42px;padding:0 15px;border-radius:12px;border:1px solid rgba(143,242,188,.22);background:#0d6b51;color:#effff8;font-weight:950;cursor:pointer}.report-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}.report-grid>div{min-height:64px;padding:9px;border-radius:12px;background:#061522;border:1px solid rgba(255,255,255,.07);overflow:hidden}.report-grid span{display:block;color:var(--muted);font-size:9px}.report-grid b{display:block;margin-top:5px;font-size:12px;white-space:nowrap;min-width:14ch}
+.footer{padding:18px 24px;text-align:center;color:#658099;font-size:9px}
+
+@media(max-width:1180px){.kpis{grid-template-columns:repeat(3,1fr)}.batteries{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:840px){.header-inner{align-items:flex-start;flex-direction:column}.header-actions{justify-content:flex-start}.machines{grid-template-columns:1fr}.cycle-meta,.report-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.header{padding:17px 16px}.header h1{font-size:22px}main{padding:14px 12px 24px}.hero{padding:15px}.hero h2{font-size:22px}.kpis{grid-template-columns:repeat(2,1fr)}.machine-grid{grid-template-columns:repeat(2,1fr)}.batteries,.cycle-meta,.report-grid{grid-template-columns:1fr}.login-card{padding:23px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<section class="login" id="loginView">
+  <div class="login-card">
+    <div class="brand"><div class="logo">BX</div><div><small>Portal de socio interno</small><strong>BLEXXON XELA · JAVIER RAMIREZ</strong></div></div>
+    <h1>BLEXXON XELA</h1>
+    <p><b>SOCIO INTERNO · JAVIER RAMIREZ</b><br>Acceso exclusivo a Máquinas 01–02 y baterías 1–4.</p>
+    <form class="form" id="loginForm" autocomplete="off" onsubmit="event.preventDefault(); if(window.BLEXXON_LOGIN){window.BLEXXON_LOGIN();} return false;">
+      <label class="label">Usuario<input class="input" id="user" autocomplete="username" spellcheck="false" required></label>
+      <label class="label">Contraseña<input class="input" id="pass" type="password" autocomplete="current-password" inputmode="numeric" required></label>
+      <button class="login-btn" id="loginBtn" type="button" onclick="if(window.BLEXXON_LOGIN){window.BLEXXON_LOGIN();}">Entrar al panel</button>
+    </form>
+    <div class="error" id="error"></div>
+    <p class="login-foot">Panel privado · BLEXXON · Guatemala</p>
+  </div>
+</section>
+
+<div class="app view-hidden" id="app" style="display:none">
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <h1>BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ</h1>
+        <div class="sub"><b>Socio interno</b> · Máquinas 01–02 · baterías 1–4 · horario financiero 9:00 a. m. a 11:00 p. m.</div>
+      </div>
+      <div class="header-actions">
+        <div class="pill" id="clock">--:--:--</div>
+        <div class="pill ok" id="operation">Estado</div>
+        <button class="logout" id="logout">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="kicker">BLEXXON XELA · PORTAL SOCIO INTERNO</div>
+          <h2>SOCIO INTERNO · JAVIER RAMIREZ</h2>
+          <p><b>Propietario de Máquinas 01 y 02.</b> Cada pistola tiene tarifa de <b>Q75.00/h</b>; las dos pistolas generan hasta <b>Q150.00/h por máquina</b>. Ambas máquinas juntas generan hasta <b>Q300.00/h</b> durante recarga activa. El ciclo se repite: <b>15 min de recarga + 5 min de descarga técnica</b>.</p>
+        </div>
+        <div class="chips"><span class="chip owner">SOCIO INTERNO</span><span class="chip">M01 · SK984681DMX</span><span class="chip">M02 · SK984682DMX</span></div>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi"><span>Estado operativo</span><strong id="kpiState" class="green">--</strong></div>
+        <div class="kpi"><span>Producción instantánea</span><strong id="kpiNow" class="green">Q0.00/h</strong></div>
+        <div class="kpi"><span>Generado hoy</span><strong id="kpiToday" class="green">Q0.00</strong></div>
+        <div class="kpi"><span>Potencia combinada</span><strong id="kpiPower" class="amber">0 W</strong></div>
+        <div class="kpi"><span>Voltaje promedio</span><strong id="kpiVoltage" class="cyan">-- V</strong></div>
+        <div class="kpi"><span>Capacidad máxima conjunta</span><strong class="cyan">Q300.00/h</strong></div>
+      </div>
+
+      <div class="cycle">
+        <div class="cycle-head"><div class="cycle-title">Ciclo técnico sincronizado M01 + M02</div><div class="cycle-state" id="cycleState">--</div></div>
+        <div class="track"><i id="cycleBar"></i></div>
+        <div class="cycle-meta">
+          <div class="mini"><span>Duración de recarga</span><b>00:15:00</b></div>
+          <div class="mini"><span>Duración de descarga</span><b>00:05:00</b></div>
+          <div class="mini"><span>Transcurrido fase</span><b id="passed">00:00:00</b></div>
+          <div class="mini"><span>Restante fase</span><b id="remaining">00:00:00</b></div>
+        </div>
+      </div>
+
+      <div class="machines">
+        <article class="machine" data-machine="1">
+          <div class="machine-top"><div><h3>Máquina 01</h3><div class="serial">SK984681DMX</div></div><div class="status" data-status="1">--</div></div>
+          <div class="machine-grid">
+            <div class="cell"><span>Voltaje estable</span><b class="cyan wide" data-voltage="1">-- V</b></div>
+            <div class="cell"><span>Consumo actual</span><b class="amber" data-power="1">0 W</b></div>
+            <div class="cell"><span>Producción actual</span><b class="green" data-hour="1">Q0.00/h</b></div>
+            <div class="cell"><span>Pistola 1</span><b class="green" data-gun-a="1">Q75.00/h</b></div>
+            <div class="cell"><span>Pistola 2</span><b class="green" data-gun-b="1">Q75.00/h</b></div>
+            <div class="cell"><span>Capacidad máquina</span><b class="cyan" data-capacity="1">Q150.00/h</b></div>
+            <div class="cell"><span>Generado hoy</span><b class="green" data-today="1">Q0.00</b></div>
+            <div class="cell"><span>Batería asignada</span><b>Batería 1</b></div>
+            <div class="cell"><span>Fase</span><b data-phase="1">--</b></div>
+          </div>
+        </article>
+
+        <article class="machine" data-machine="2">
+          <div class="machine-top"><div><h3>Máquina 02</h3><div class="serial">SK984682DMX</div></div><div class="status" data-status="2">--</div></div>
+          <div class="machine-grid">
+            <div class="cell"><span>Voltaje estable</span><b class="cyan wide" data-voltage="2">-- V</b></div>
+            <div class="cell"><span>Consumo actual</span><b class="amber" data-power="2">0 W</b></div>
+            <div class="cell"><span>Producción actual</span><b class="green" data-hour="2">Q0.00/h</b></div>
+            <div class="cell"><span>Pistola 1</span><b class="green" data-gun-a="2">Q75.00/h</b></div>
+            <div class="cell"><span>Pistola 2</span><b class="green" data-gun-b="2">Q75.00/h</b></div>
+            <div class="cell"><span>Capacidad máquina</span><b class="cyan" data-capacity="2">Q150.00/h</b></div>
+            <div class="cell"><span>Generado hoy</span><b class="green" data-today="2">Q0.00</b></div>
+            <div class="cell"><span>Batería asignada</span><b>Batería 2</b></div>
+            <div class="cell"><span>Fase</span><b data-phase="2">--</b></div>
+          </div>
+        </article>
+      </div>
+
+      <div class="battery-title"><h3>Baterías autorizadas · Xela</h3><small>B1 → M01 · B2 → M02 · B3/B4 reserva completa</small></div>
+      <div class="batteries">
+        <div class="battery active"><div class="battery-head"><span>Batería 1 · M01</span><b data-bat-pct="1">98.0%</b></div><div class="battery-bar"><i data-bat-bar="1"></i></div><small data-bat-status="1">Suministro exclusivo M01</small><div class="load" data-bat-load="1">0 W</div><div class="health">SOH 99.4% · descarga superficial</div></div>
+        <div class="battery active"><div class="battery-head"><span>Batería 2 · M02</span><b data-bat-pct="2">97.0%</b></div><div class="battery-bar"><i data-bat-bar="2"></i></div><small data-bat-status="2">Suministro exclusivo M02</small><div class="load" data-bat-load="2">0 W</div><div class="health">SOH 99.3% · descarga superficial</div></div>
+        <div class="battery reserve"><div class="battery-head"><span>Batería 3 · reserva</span><b>100.0%</b></div><div class="battery-bar"><i></i></div><small>Reserva completa · sin consumo</small><div class="load">0 W asignados</div><div class="health">SOH 99.8% · 100% disponible</div></div>
+        <div class="battery reserve"><div class="battery-head"><span>Batería 4 · reserva</span><b>100.0%</b></div><div class="battery-bar"><i></i></div><small>Reserva completa · sin consumo</small><div class="load">0 W asignados</div><div class="health">SOH 99.8% · 100% disponible</div></div>
+      </div>
+
+      <div class="report">
+        <div class="report-head">
+          <div><div class="kicker">REPORTE PERSONAL</div><h3>Producción financiera · corte al momento</h3><small>El archivo Excel refleja el estado exacto al presionar el botón: tarifa por pistola, producción por máquina, fase, voltajes, consumo, baterías y acumulado del día.</small></div>
+          <button class="excel" id="excel">Descargar reporte Excel</button>
+        </div>
+        <div class="report-grid">
+          <div><span>Fecha / hora Guatemala</span><b id="reportTime">--</b></div>
+          <div><span>Producción instantánea</span><b id="reportNow" class="green">Q0.00/h</b></div>
+          <div><span>Generado hoy</span><b id="reportToday" class="green">Q0.00</b></div>
+          <div><span>Fase actual</span><b id="reportPhase" class="cyan">--</b></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div class="footer">BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ · acceso autorizado a M01, M02 y baterías 1–4</div>
+</div>
+
+<script>
+(()=>{
+'use strict';
+const GT='America/Guatemala';
+const RECHARGE=15*60, DISCHARGE=5*60, CYCLE=RECHARGE+DISCHARGE;
+const GUN_RATE=75, MACHINE_RATE=150;
+const SERIAL={1:'SK984681DMX',2:'SK984682DMX'};
+const login=document.getElementById('loginView'), app=document.getElementById('app');
+const form=document.getElementById('loginForm'), user=document.getElementById('user'), pass=document.getElementById('pass'), error=document.getElementById('error');
+let voltage={1:235.2,2:236.7};
+
+const $=(s)=>document.querySelector(s);
+const set=(s,v)=>{const e=$(s);if(e&&e.textContent!==String(v))e.textContent=String(v)};
+const money=(n)=>'Q'+Number(n).toLocaleString('es-GT',{minimumFractionDigits:2,maximumFractionDigits:2});
+const watts=(n)=>Math.max(0,Math.round(n)).toLocaleString('es-GT')+' W';
+const hms=(n)=>{n=Math.max(0,Math.floor(n));return `${String(Math.floor(n/3600)).padStart(2,'0')}:${String(Math.floor((n%3600)/60)).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`};
+function parts(d=new Date()){
+  const p=new Intl.DateTimeFormat('en-CA',{timeZone:GT,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(d);
+  return Object.fromEntries(p.filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
+}
+function stamp(d=new Date()){
+  const p=parts(d);return `${String(p.day).padStart(2,'0')}/${String(p.month).padStart(2,'0')}/${p.year} ${String(p.hour).padStart(2,'0')}:${String(p.minute).padStart(2,'0')}:${String(p.second).padStart(2,'0')}`;
+}
+function state(d=new Date()){
+  const p=parts(d), sod=p.hour*3600+p.minute*60+p.second;
+  const open=sod>=9*3600&&sod<23*3600;
+  const elapsed=sod<9*3600?0:(sod>=23*3600?14*3600:sod-9*3600);
+  const relative=((elapsed%CYCLE)+CYCLE)%CYCLE;
+  const recharge=relative<RECHARGE;
+  const passed=recharge?relative:relative-RECHARGE;
+  const duration=recharge?RECHARGE:DISCHARGE;
+  return {p,sod,open,elapsed,relative,recharge,passed,remaining:duration-passed,progress:100*passed/duration};
+}
+function productiveSeconds(elapsed){
+  elapsed=Math.max(0,Math.min(14*3600,elapsed));
+  const full=Math.floor(elapsed/CYCLE), rem=elapsed%CYCLE;
+  return full*RECHARGE+Math.min(rem,RECHARGE);
+}
+function updateVoltages(){
+  const step=Math.floor(Date.now()/2500);
+  for(const m of [1,2]){
+    const base=m===1?235.0:236.1;
+    const wave=Math.sin((step+m*3)*0.86)*1.65+Math.cos((step+m*7)*0.37)*.72;
+    voltage[m]=Math.max(231.8,Math.min(239.4,base+wave));
+  }
+}
+function powerFor(m,st){
+  if(!st.open||!st.recharge)return 0;
+  const base=m===1?84200:85800;
+  const step=Math.floor(Date.now()/2500);
+  return base+Math.sin((step+m)*.61)*2650+Math.cos((step+m*2)*.29)*1150;
+}
+function update(){
+  if(app.classList.contains('view-hidden')||app.style.display==='none')return;
+  const st=state(), productive=productiveSeconds(st.elapsed), perToday=MACHINE_RATE*(productive/3600);
+  const active=st.open&&st.recharge;
+  const currentMachine=active?MACHINE_RATE:0, currentTotal=currentMachine*2;
+  const p1=powerFor(1,st),p2=powerFor(2,st),totalPower=p1+p2;
+  const avg=(voltage[1]+voltage[2])/2;
+  const phase=!st.open?'FUERA DE HORARIO':(st.recharge?'RECARGA · 15 MIN':'DESCARGA · 5 MIN');
+
+  set('#clock',`${String(st.p.hour).padStart(2,'0')}:${String(st.p.minute).padStart(2,'0')}:${String(st.p.second).padStart(2,'0')} · Guatemala`);
+  set('#operation',st.open?(st.recharge?'OPERANDO · RECARGA':'PAUSA TÉCNICA · DESCARGA'):'FUERA DE HORARIO · 09:00–23:00');
+  set('#kpiState',phase);set('#kpiNow',money(currentTotal)+'/h');set('#kpiToday',money(perToday*2));set('#kpiPower',watts(totalPower));set('#kpiVoltage',avg.toFixed(1)+' V');
+  set('#passed',st.open?hms(st.passed):'00:00:00');set('#remaining',st.open?hms(st.remaining):'00:00:00');
+  const cs=$('#cycleState'), cb=$('#cycleBar');
+  if(cs){cs.textContent=phase;cs.className='cycle-state '+(!st.open?'closed':st.recharge?'':'discharge')}
+  if(cb){cb.style.width=(st.open?st.progress:0).toFixed(2)+'%';cb.className=st.recharge?'':'discharge'}
+
+  for(const m of [1,2]){
+    const power=m===1?p1:p2;
+    set(`[data-voltage="${m}"]`,voltage[m].toFixed(1)+' V · estable · act. 2.5 s');
+    set(`[data-power="${m}"]`,watts(power));
+    set(`[data-hour="${m}"]`,money(currentMachine)+'/h');
+    set(`[data-gun-a="${m}"]`,money(st.open?GUN_RATE:0)+'/h');
+    set(`[data-gun-b="${m}"]`,money(st.open?GUN_RATE:0)+'/h');
+    set(`[data-capacity="${m}"]`,money(st.open?MACHINE_RATE:0)+'/h');
+    set(`[data-today="${m}"]`,money(perToday));
+    set(`[data-phase="${m}"]`,phase);
+    const status=$(`[data-status="${m}"]`);
+    if(status){status.textContent=!st.open?'EN ESPERA':st.recharge?'2 / 2 PISTOLAS ACTIVAS':'DESCARGA TÉCNICA';status.className='status '+(!st.open?'closed':st.recharge?'':'pause')}
+  }
+
+  const ratio=st.open?Math.min(1,st.relative/RECHARGE):0;
+  let b1=98,b2=97;
+  if(st.open&&st.recharge){b1=98-16*ratio;b2=97-14*ratio}
+  else if(st.open){const r=(st.relative-RECHARGE)/DISCHARGE;b1=82+16*r;b2=83+14*r}
+  [[1,b1,p1],[2,b2,p2]].forEach(([n,pct,pow])=>{
+    set(`[data-bat-pct="${n}"]`,pct.toFixed(1)+'%');set(`[data-bat-load="${n}"]`,st.open&&st.recharge?'Consumo asignado: '+watts(pow):'Consumo asignado: 0 W');set(`[data-bat-status="${n}"]`,!st.open?'Protegida · fuera de horario':st.recharge?`Suministro exclusivo M0${n}`:`Balanceo / descarga técnica M0${n}`);const bar=$(`[data-bat-bar="${n}"]`);if(bar)bar.style.width=pct.toFixed(1)+'%';
+  });
+  set('#reportTime',stamp());set('#reportNow',money(currentTotal)+'/h');set('#reportToday',money(perToday*2));set('#reportPhase',phase);
+}
+function xmlEscape(v){return String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function cell(v,type='String',style='Cell'){return `<Cell ss:StyleID="${style}"><Data ss:Type="${type}">${xmlEscape(v)}</Data></Cell>`}
+function exportExcel(){
+  const now=new Date(),st=state(now),productive=productiveSeconds(st.elapsed),perToday=MACHINE_RATE*(productive/3600);
+  const active=st.open&&st.recharge,currentGun=active?GUN_RATE:0,currentMachine=currentGun*2;
+  const p1=powerFor(1,st),p2=powerFor(2,st),phase=!st.open?'FUERA DE HORARIO':st.recharge?'RECARGA 15 MIN':'DESCARGA 5 MIN';
+  const rows=[
+    ['REPORTE PRIVADO XELA · JAVIER RAMÍREZ','','','','','','','','','','','','',''],
+    ['Socio','Sucursal','Fecha y hora','Máquina','Serie','Fase','Voltaje (V)','Consumo (W)','Pistola 1 Q/h','Pistola 2 Q/h','Producción máquina Q/h','Capacidad máquina Q/h','Generado hoy Q','Batería'],
+    ['Javier Ramírez','Xela',stamp(now),'M01',SERIAL[1],phase,voltage[1].toFixed(1),Math.round(p1),currentGun.toFixed(2),currentGun.toFixed(2),currentMachine.toFixed(2),MACHINE_RATE.toFixed(2),perToday.toFixed(2),'Batería 1'],
+    ['Javier Ramírez','Xela',stamp(now),'M02',SERIAL[2],phase,voltage[2].toFixed(1),Math.round(p2),currentGun.toFixed(2),currentGun.toFixed(2),currentMachine.toFixed(2),MACHINE_RATE.toFixed(2),perToday.toFixed(2),'Batería 2'],
+    ['TOTAL','','','','','',((voltage[1]+voltage[2])/2).toFixed(1),Math.round(p1+p2),(currentGun*2).toFixed(2),(currentGun*2).toFixed(2),(currentMachine*2).toFixed(2),(MACHINE_RATE*2).toFixed(2),(perToday*2).toFixed(2),'B1 + B2'],
+    ['Batería 3','100%','Reserva completa','0 W','','','','','','','','','',''],
+    ['Batería 4','100%','Reserva completa','0 W','','','','','','','','','','']
+  ];
+  const body=rows.map((row,ri)=>`<Row>${row.map((v,ci)=>cell(v,(ri>=2&&ri<=4&&ci>=6&&ci<=12)?'Number':'String',ri===0?'Title':ri===1?'Head':ri===4?'Total':'Cell')).join('')}</Row>`).join('');
+  const xml=`<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Styles><Style ss:ID="Cell"><Font ss:FontName="Aptos" ss:Size="11"/></Style><Style ss:ID="Title"><Font ss:FontName="Aptos" ss:Size="16" ss:Bold="1" ss:Color="#0A6B55"/></Style><Style ss:ID="Head"><Font ss:FontName="Aptos" ss:Size="11" ss:Bold="1" ss:Color="#FFFFFF"/><Interior ss:Color="#0B4963" ss:Pattern="Solid"/></Style><Style ss:ID="Total"><Font ss:FontName="Aptos" ss:Size="11" ss:Bold="1"/><Interior ss:Color="#DDF6EA" ss:Pattern="Solid"/></Style></Styles><Worksheet ss:Name="Reporte Xela"><Table>${body}</Table></Worksheet></Workbook>`;
+  const blob=new Blob([xml],{type:'application/vnd.ms-excel;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a'),p=parts(now);
+  a.href=url;a.download=`Reporte_Xela_Javier_${p.year}-${String(p.month).padStart(2,'0')}-${String(p.day).padStart(2,'0')}_${String(p.hour).padStart(2,'0')}-${String(p.minute).padStart(2,'0')}.xls`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);
+}
+function normalizeUser(v){
+  return String(v||'').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9]/g,'').toUpperCase();
+}
+function openPanel(){
+  error.textContent='';
+  login.classList.add('view-hidden');
+  login.style.display='none';
+  app.removeAttribute('hidden');
+  app.classList.remove('view-hidden');
+  app.style.display='block';
+  document.body.classList.add('panel-open');
+  updateVoltages();
+  update();
+  try{window.scrollTo({top:0,left:0,behavior:'instant'});}catch(_){window.scrollTo(0,0);}
+}
+window.BLEXXON_LOGIN=function(){
+  const u=normalizeUser(user.value);
+  const okUser=(u==='JAVIERRAMIREZ');
+  const okPass=(String(pass.value).trim()==='1491');
+  if(!(okUser&&okPass)){
+    error.textContent='Credenciales incorrectas. Use Javier Ramirez / 1491.';
+    pass.focus();
+    return false;
+  }
+  openPanel();
+  return true;
+};
+form.addEventListener('submit',(e)=>{e.preventDefault();window.BLEXXON_LOGIN();});
+const loginBtn=document.getElementById('loginBtn');
+if(loginBtn)loginBtn.addEventListener('click',(e)=>{e.preventDefault();window.BLEXXON_LOGIN();});
+$('#logout').addEventListener('click',()=>{
+  app.classList.add('view-hidden');app.style.display='none';
+  login.classList.remove('view-hidden');login.style.display='grid';
+  pass.value='';error.textContent='';user.focus();
+});
+$('#excel').addEventListener('click',exportExcel);
+updateVoltages();setInterval(updateVoltages,2500);setInterval(update,1000);
+setTimeout(()=>user.focus(),40);
+})();
+</script>
+</body>
+</html>
