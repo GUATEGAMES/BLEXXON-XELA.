@@ -6,166 +6,58 @@
 <meta name="color-scheme" content="dark">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <title>BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ</title>
-<link rel="stylesheet" href="app.css?v=2300-1">
+<style>
+html,body{margin:0;min-height:100%;background:#030914;color:#f4f8ff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+#boot{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center;background:radial-gradient(circle at 22% 14%,rgba(48,137,215,.18),transparent 37%),linear-gradient(145deg,#020711,#071527 55%,#03101c)}
+#boot .box{width:min(460px,100%);padding:32px;border-radius:24px;background:#071221;border:1px solid rgba(255,255,255,.13);box-shadow:0 30px 75px rgba(0,0,0,.5)}
+#boot b{display:block;font-size:24px}#boot span{display:block;margin-top:10px;color:#8ea8bb;font-size:13px;line-height:1.5}
+#boot .err{color:#ff8d92}
+</style>
 </head>
 <body>
-<section class="login" id="loginView">
-  <div class="login-card">
-    <div class="brand"><div class="logo">BX</div><div><small>Portal de socio interno</small><strong>BLEXXON XELA · JAVIER RAMIREZ</strong></div></div>
-
-    <div class="auth-view" id="setupView">
-      <h1>Registro inicial</h1>
-      <p><b>Configuración única del propietario.</b><br>Registre usuario, clave y teléfono; después este navegador quedará identificado como dispositivo confiable.</p>
-      <form class="auth-grid" id="setupForm" autocomplete="off">
-        <label class="label">Usuario<input class="input" id="setupUser" autocomplete="username" required></label>
-        <div class="auth-row">
-          <label class="label">Nueva clave<input class="input" id="setupPass" type="password" autocomplete="new-password" minlength="6" required></label>
-          <label class="label">Confirmar clave<input class="input" id="setupPass2" type="password" autocomplete="new-password" minlength="6" required></label>
-        </div>
-        <label class="label">Número de celular<input class="input" id="setupPhone" type="tel" inputmode="tel" placeholder="+502 5555 5555" required></label>
-        <label class="label">Código de activación del propietario<input class="input" id="setupEnroll" autocomplete="one-time-code" required></label>
-        <button class="login-btn" type="submit">Continuar a verificación</button>
-      </form>
-      <div class="error" id="setupError"></div>
-      <p class="auth-note"><strong>Primer registro:</strong> el código de activación no se guarda en texto visible. El teléfono queda asociado al perfil local de este navegador.</p>
-    </div>
-
-    <div class="auth-view" id="verifyView">
-      <h1>Verificación en 2 pasos</h1>
-      <p>Confirme el primer registro con un código de 6 dígitos. En iPhone puede abrir Mensajes con el código preparado.</p>
-      <div class="auth-grid">
-        <a class="sms-link" id="smsLink" href="#">Abrir verificación en Mensajes</a>
-        <label class="label">Código de 6 dígitos<input class="input" id="otpInput" inputmode="numeric" maxlength="6" autocomplete="one-time-code"></label>
-        <button class="login-btn" id="verifyBtn" type="button">Verificar y registrar dispositivo</button>
-        <button class="secondary-btn" id="showOtpBtn" type="button">Mostrar código local de respaldo</button>
-      </div>
-      <div class="error" id="verifyError"></div>
-      <p class="auth-note">Esta versión usa verificación asistida por el navegador. Para SMS real enviado por servidor y bloqueo global de dispositivos se requiere un backend de autenticación.</p>
-    </div>
-
-    <div class="auth-view" id="trustedView">
-      <h1>Dispositivo reconocido</h1>
-      <p>El primer registro ya fue verificado en este navegador. Los siguientes accesos no solicitan nuevamente usuario, clave ni teléfono.</p>
-      <div class="device-card"><span>ID registrado</span><b id="deviceIdText">--</b></div>
-      <div class="device-card"><span>Dispositivo</span><b id="deviceLabelText">--</b></div>
-      <button class="login-btn" id="trustedLoginBtn" type="button">Ingresar con ID registrado</button>
-      <button class="secondary-btn" id="resetDeviceBtn" type="button" style="width:100%;margin-top:10px">Restablecer este dispositivo</button>
-      <p class="login-foot">Panel privado · BLEXXON · Guatemala</p>
-    </div>
-  </div>
-</section>
-
-<div class="app view-hidden" id="app" style="display:none">
-  <header class="header">
-    <div class="header-inner">
-      <div>
-        <h1>BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ</h1>
-        <div class="sub"><b>Socio interno</b> · Máquinas 01–02 · baterías 1–4 · horario financiero 9:00 a. m. a 11:00 p. m. · operación continua sin pausas</div>
-      </div>
-      <div class="header-actions">
-        <div class="pill" id="clock">--:--:--</div>
-        <div class="pill ok" id="operation">Estado</div>
-        <button class="logout" id="logout">Cerrar sesión</button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-top">
-        <div>
-          <div class="kicker">BLEXXON XELA · PORTAL SOCIO INTERNO</div>
-          <h2>SOCIO INTERNO · JAVIER RAMIREZ</h2>
-          <p><b>Propietario de Máquinas 01 y 02.</b> Cada pistola opera a <b>Q100.00/h</b>; las dos pistolas generan <b>Q200.00/h por máquina</b>. Cada máquina alcanza una meta diaria de <b>Q2,300.00</b> en <b>11 h 30 min</b>, equivalente a <b>Q3.3333/min</b> y <b>Q0.05556/seg</b>. La meta conjunta es <b>Q4,600.00</b>. La jornada general se mantiene de <b>09:00 a 23:00</b>; al completar la meta a las 20:30, el sistema permanece en monitoreo hasta el cierre.</p>
-        </div>
-        <div class="chips"><span class="chip owner">SOCIO INTERNO</span><span class="chip">M01 · SK984681DMX</span><span class="chip">M02 · SK984682DMX</span></div>
-      </div>
-
-      <div class="kpis">
-        <div class="kpi"><span>Estado operativo</span><strong id="kpiState" class="green">--</strong></div>
-        <div class="kpi"><span>Producción instantánea</span><strong id="kpiNow" class="green">Q0.00/h</strong></div>
-        <div class="kpi"><span>Generado hoy</span><strong id="kpiToday" class="green">Q0.00</strong></div>
-        <div class="kpi"><span>Potencia combinada</span><strong id="kpiPower" class="amber">0 W</strong></div>
-        <div class="kpi"><span>Voltaje promedio</span><strong id="kpiVoltage" class="cyan">-- V</strong></div>
-        <div class="kpi"><span>Meta diaria conjunta</span><strong class="cyan">Q4,600.00</strong></div>
-      </div>
-      <div class="rate-strip">
-        <div class="rate-box"><span>Ritmo conjunto por hora</span><b>Q400.00/h</b></div>
-        <div class="rate-box"><span>Ritmo conjunto por minuto</span><b>Q6.6667/min</b></div>
-        <div class="rate-box"><span>Ritmo conjunto por segundo</span><b>Q0.11111/seg</b></div>
-      </div>
-
-      <div class="cycle">
-        <div class="cycle-head"><div class="cycle-title">Operación continua sincronizada M01 + M02</div><div class="cycle-state" id="cycleState">--</div></div>
-        <div class="track"><i id="cycleBar"></i></div>
-        <div class="cycle-meta">
-          <div class="mini"><span>Tiempo para meta Q4,600</span><b>11:30:00</b></div>
-          <div class="mini"><span>Horario general</span><b class="green">09:00–23:00</b></div>
-          <div class="mini"><span>Transcurrido jornada</span><b id="passed">00:00:00</b></div>
-          <div class="mini"><span>Restante para meta</span><b id="remaining">11:30:00</b></div>
-        </div>
-      </div>
-
-      <div class="machines">
-        <article class="machine" data-machine="1">
-          <div class="machine-top"><div><h3>Máquina 01</h3><div class="serial">SK984681DMX</div></div><div class="status" data-status="1">--</div></div>
-          <div class="machine-grid">
-            <div class="cell"><span>Voltaje estable</span><b class="cyan wide" data-voltage="1">-- V</b></div>
-            <div class="cell"><span>Consumo actual</span><b class="amber" data-power="1">0 W</b></div>
-            <div class="cell"><span>Producción actual</span><b class="green" data-hour="1">Q0.00/h</b></div>
-            <div class="cell"><span>Pistola 1</span><b class="green" data-gun-a="1">Q100.00/h</b></div>
-            <div class="cell"><span>Pistola 2</span><b class="green" data-gun-b="1">Q100.00/h</b></div>
-            <div class="cell"><span>Capacidad máquina</span><b class="cyan" data-capacity="1">Q200.00/h</b></div>
-            <div class="cell"><span>Producción por minuto</span><b class="cyan">Q3.3333/min</b></div>
-            <div class="cell"><span>Producción por segundo</span><b class="cyan">Q0.05556/seg</b></div>
-            <div class="cell"><span>Generado hoy</span><b class="green" data-today="1">Q0.00</b></div>
-            <div class="cell"><span>Batería asignada</span><b>Batería 1</b></div>
-            <div class="cell"><span>Fase</span><b data-phase="1">--</b></div>
-          </div>
-        </article>
-
-        <article class="machine" data-machine="2">
-          <div class="machine-top"><div><h3>Máquina 02</h3><div class="serial">SK984682DMX</div></div><div class="status" data-status="2">--</div></div>
-          <div class="machine-grid">
-            <div class="cell"><span>Voltaje estable</span><b class="cyan wide" data-voltage="2">-- V</b></div>
-            <div class="cell"><span>Consumo actual</span><b class="amber" data-power="2">0 W</b></div>
-            <div class="cell"><span>Producción actual</span><b class="green" data-hour="2">Q0.00/h</b></div>
-            <div class="cell"><span>Pistola 1</span><b class="green" data-gun-a="2">Q100.00/h</b></div>
-            <div class="cell"><span>Pistola 2</span><b class="green" data-gun-b="2">Q100.00/h</b></div>
-            <div class="cell"><span>Capacidad máquina</span><b class="cyan" data-capacity="2">Q200.00/h</b></div>
-            <div class="cell"><span>Producción por minuto</span><b class="cyan">Q3.3333/min</b></div>
-            <div class="cell"><span>Producción por segundo</span><b class="cyan">Q0.05556/seg</b></div>
-            <div class="cell"><span>Generado hoy</span><b class="green" data-today="2">Q0.00</b></div>
-            <div class="cell"><span>Batería asignada</span><b>Batería 2</b></div>
-            <div class="cell"><span>Fase</span><b data-phase="2">--</b></div>
-          </div>
-        </article>
-      </div>
-
-      <div class="battery-title"><h3>Baterías autorizadas · Xela</h3><small>B1 → M01 · B2 → M02 · B3/B4 reserva completa · balanceo dinámico sin detener las máquinas</small></div>
-      <div class="batteries">
-        <div class="battery active"><div class="battery-head"><span>Batería 1 · M01</span><b data-bat-pct="1">98.0%</b></div><div class="battery-bar"><i data-bat-bar="1"></i></div><small data-bat-status="1">Suministro exclusivo M01</small><div class="load" data-bat-load="1">0 W</div><div class="health">SOH 99.4% · balanceo dinámico en línea</div></div>
-        <div class="battery active"><div class="battery-head"><span>Batería 2 · M02</span><b data-bat-pct="2">97.0%</b></div><div class="battery-bar"><i data-bat-bar="2"></i></div><small data-bat-status="2">Suministro exclusivo M02</small><div class="load" data-bat-load="2">0 W</div><div class="health">SOH 99.3% · balanceo dinámico en línea</div></div>
-        <div class="battery reserve"><div class="battery-head"><span>Batería 3 · reserva</span><b>100.0%</b></div><div class="battery-bar"><i></i></div><small>Reserva completa · sin consumo</small><div class="load">0 W asignados</div><div class="health">SOH 99.8% · 100% disponible</div></div>
-        <div class="battery reserve"><div class="battery-head"><span>Batería 4 · reserva</span><b>100.0%</b></div><div class="battery-bar"><i></i></div><small>Reserva completa · sin consumo</small><div class="load">0 W asignados</div><div class="health">SOH 99.8% · 100% disponible</div></div>
-      </div>
-
-      <div class="report">
-        <div class="report-head">
-          <div><div class="kicker">REPORTE PERSONAL</div><h3>Producción financiera · corte al momento</h3><small>El archivo Excel refleja el estado exacto al presionar el botón: tarifa por pistola, producción por máquina, operación continua, voltajes, consumo, baterías, meta diaria conjunta de Q4,600.00 y meta individual de Q2,300.00 y acumulado del día.</small></div>
-          <button class="excel" id="excel">Descargar reporte Excel</button>
-        </div>
-        <div class="report-grid">
-          <div><span>Fecha / hora Guatemala</span><b id="reportTime">--</b></div>
-          <div><span>Producción instantánea</span><b id="reportNow" class="green">Q0.00/h</b></div>
-          <div><span>Generado hoy</span><b id="reportToday" class="green">Q0.00</b></div>
-          <div><span>Fase actual</span><b id="reportPhase" class="cyan">--</b></div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <div class="footer">BLEXXON XELA · SOCIO INTERNO · JAVIER RAMIREZ · acceso autorizado a M01, M02 y baterías 1–4</div>
-</div>
-<script src="app.js?v=2300-1"></script>
+<div id="boot"><div class="box"><b>BLEXXON XELA</b><span id="bootMsg">Cargando portal seguro…</span></div></div>
+<script>
+(async()=>{
+  const OWNER='GUATEGAMES';
+  const REPO='BLEXXON-XELA.';
+  const PORTAL_REF='1f4812eab09b0a2366ebbdfd08fb0dcc7d247432';
+  const API='https://api.github.com/repos/'+OWNER+'/'+encodeURIComponent(REPO)+'/contents/';
+  const msg=document.getElementById('bootMsg');
+  function decodeBase64Utf8(b64){
+    const bin=atob(String(b64||'').replace(/\s/g,''));
+    const bytes=new Uint8Array(bin.length);
+    for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
+    return new TextDecoder('utf-8').decode(bytes);
+  }
+  async function get(path,ref){
+    const r=await fetch(API+encodeURIComponent(path)+'?ref='+encodeURIComponent(ref),{
+      headers:{'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}
+    });
+    if(!r.ok)throw new Error(path+' HTTP '+r.status);
+    const j=await r.json();
+    return decodeBase64Utf8(j.content);
+  }
+  try{
+    const [portal,css,js]=await Promise.all([
+      get('index.html',PORTAL_REF),
+      get('app.css','main'),
+      get('app.js','main')
+    ]);
+    const parsed=new DOMParser().parseFromString(portal,'text/html');
+    parsed.querySelectorAll('script,link[rel="stylesheet"]').forEach(e=>e.remove());
+    const style=document.createElement('style');
+    style.textContent=css;
+    document.head.appendChild(style);
+    document.body.innerHTML=parsed.body.innerHTML;
+    const code=document.createElement('script');
+    code.textContent=js+'\n//# sourceURL=blexxon-app.js';
+    document.body.appendChild(code);
+  }catch(e){
+    console.error(e);
+    msg.textContent='No se pudo cargar el portal. Cierre esta pestaña y vuelva a intentar. '+(e&&e.message?e.message:'');
+    msg.className='err';
+  }
+})();
+</script>
 </body>
 </html>
